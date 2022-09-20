@@ -1468,14 +1468,7 @@ static void play_current_file(struct MPContext *mpctx)
     mpctx->playing->reserved += 1;
 
     mpctx->filename = talloc_strdup(NULL, mpctx->playing->filename);
-    char *rpath = NULL;
-    if (strncmp(mpctx->filename, "fd://", 5) == 0 || strncmp(mpctx->filename, "fdclose://", 10) == 0) {
-        rpath = strstr(mpctx->filename, "/p/") + 3;
-    }
     mpctx->stream_open_filename = mpctx->filename;
-    if (rpath[0]) {
-        mpctx->filename = rpath;
-    }
 
     mpctx->add_osd_seek_info &= OSD_SEEK_INFO_CURRENT_FILE;
 
