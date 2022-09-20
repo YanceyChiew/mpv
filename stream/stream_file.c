@@ -276,12 +276,6 @@ static int open_f(stream_t *stream, const struct stream_open_args *args)
             MP_ERR(stream, "Invalid FD: %s\n", stream->url);
             return STREAM_ERROR;
         }
-        if (strncmp(end, "/p/", 3) == 0) {
-            begin = strstr(end, "/p/") + 3, end = NULL;
-            // unsafe, test only
-            stream->url = begin;
-            filename = stream->path = strstr(begin, "://") + 3;
-        }
         if (is_fdclose)
             p->close = true;
     } else if (!strict_fs && !strcmp(filename, "-")) {
